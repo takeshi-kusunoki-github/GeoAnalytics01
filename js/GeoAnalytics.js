@@ -1,10 +1,15 @@
+/*
+  GeoANalytics.js
+
+*/
+
+// Global変数
 let map;
 let Position_Current = [0,0];
 
 
 
 // path to csv data
-//let path = "data/dunitz.csv";
 let path = "data/Udon.csv";
 
 let markers = L.featureGroup();
@@ -13,8 +18,8 @@ console.log(0)
 // initialize jquery 利用
 $(document).ready(function() {
 
-// 	// map作成
-console.log(10)
+  // 	// map作成
+  console.log(10)
     createMap();
 
 	// csv読み込み
@@ -64,9 +69,8 @@ function createMap(){
      "GoogleMap": GoogleMap
   };
 
+  //マップ種類コントロールをマップに追加
   L.control.layers(baseMaps).addTo(map);
-
-
 
   // ズームコントローラーの位置を右下に変更
   map.zoomControl.setPosition('bottomright');
@@ -88,7 +92,9 @@ function createMap(){
   }
 
   var marker, circle;
-
+/*/////////////////////////////////////////////////////////////////////////////////////////////////////
+     現在地取得
+/*/////////////////////////////////////////////////////////////////////////////////////////////////////
   function getPosition(position){
       // console.log(position)
       var lat = position.coords.latitude
@@ -117,8 +123,12 @@ function createMap(){
 
 }
 
+/*/////////////////////////////////////////////////////////////////////////////////////////////////////
+     CSV読み込み
+/*/////////////////////////////////////////////////////////////////////////////////////////////////////
 // function to read csv data
 function readCSV(){
+  console.log("readCSV START")
 	Papa.parse(path, {
 		header: true,
 		download: true,
@@ -129,9 +139,14 @@ function readCSV(){
 			mapCSV(data);
 
 		}
+
 	});
+  console.log("readCSV END")
 }
 
+/*/////////////////////////////////////////////////////////////////////////////////////////////////////
+     CSVデータのマッピング
+/*/////////////////////////////////////////////////////////////////////////////////////////////////////
 function mapCSV(data){
 	
 	// loop through each entry
@@ -150,14 +165,14 @@ function mapCSV(data){
 	map.fitBounds(markers.getBounds())
 }
 
-function JinrikiClick(){
-  console.log("人力スタート")
-  // onLocationFound(e) {
-    // Position_Current[0] = e.latlng.Latitude
-    // Position_Current[1] = e.latlong.longitude
-  // }
-  console.log("人力エンド ")
-}
+// function JinrikiClick(){
+//   console.log("人力スタート")
+//   // onLocationFound(e) {
+//     // Position_Current[0] = e.latlng.Latitude
+//     // Position_Current[1] = e.latlong.longitude
+//   // }
+//   console.log("人力エンド ")
+// }
 
 function GetCurrentPosition(){
   console.log("現在位置取得スタート")

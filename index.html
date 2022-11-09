@@ -18,6 +18,9 @@
     <!--アイコンとかフォント-->
     <script src="https://kit.fontawesome.com/dab30ed2c2.js" crossorigin="anonymous"></script>
 
+  <!-- PapaParse CSV読み込み-->
+	<script src="js/papaparse.min.js"></script>
+
     <!--サイドバー-->
     <link rel="stylesheet" href="css/leaflet-sidebar.min.css" />
     <script src="js/leaflet-sidebar.min.js"></script>
@@ -36,16 +39,7 @@
 
 <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.74.4/dist/L.Control.Locate.min.css" /> -->
 
-<!-- <style>
-    body {
-    padding: 0;
-    margin: 0;
-}
 
-html, body, #mapid {
-    height: 100%;
-}
-</style>     -->
   </head>
   <body>
     <div id = "TopBar" >GeoAnalytics01_02</div>
@@ -72,7 +66,7 @@ html, body, #mapid {
       <div class="sidebar-content">
         <div class="sidebar-pane" id="home">
           <h1 class="sidebar-header">
-              sidebar-v23
+              サイドバー
               <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
           </h1>
 
@@ -119,6 +113,6 @@ html, body, #mapid {
 
     <div id="mapid"></div>
 
-    <script src="js/map.js"></script>
+    <script src="js/GeoAnalytics.js"></script>
   </body>
 </html>
