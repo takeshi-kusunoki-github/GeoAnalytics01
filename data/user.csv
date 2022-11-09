@@ -1,0 +1,3 @@
+"Name","IsActive","Role","Password"
+"admin",1,10,"password"
+"user01",1,1,"password"

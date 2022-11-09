@@ -1,0 +1,48 @@
+
+#grovalNavigation1{
+    height: 40px;
+    text-align: center;
+    background-color: rgb(17, 1, 46);
+    color: rgb(155, 239, 253);
+    font-size: large;
+}
+#grovalNavigation2{
+    height: 25px;
+    text-align: left;
+    background-color: rgb(17, 1, 46);
+    color: rgb(155, 239, 253);
+    margin-top: 1px;
+    font-size: small;
+}
+
+#mainpart{
+    display: flex;
+    height: 830px;
+    margin-top: 1px;
+    background-color: #eee;
+}
+#sideNavigation{
+    display: flex;
+    width: 150px;
+    text-align: left;
+    background-color: rgb(17, 1, 46);
+    color: rgb(155, 239, 253);
+}
+#selectMarket{
+    display: flex;
+    width: 100px;
+    text-align: left;
+}
+#map{
+    width: calc(100% - 150px);
+    text-align: left;
+    background-color: rgb(62, 34, 105);
+    color: #fff;
+}
+#footer{
+    height: 25px;
+    text-align: center;
+    margin-top: 5px;
+    background-color: rgb(17, 1, 46);
+    color: rgb(155, 239, 253);
+}
