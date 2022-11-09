@@ -1,9 +1,11 @@
 let map;
 let Position_Current = [0,0];
 
+
+
 // path to csv data
 //let path = "data/dunitz.csv";
-let path = "data/Nico_Beer.csv";
+let path = "data/Udon.csv";
 
 let markers = L.featureGroup();
 console.log(0)
@@ -15,8 +17,8 @@ $(document).ready(function() {
 console.log(10)
     createMap();
 
-// 	// csv読み込み
-// //	readCSV(path);
+	// csv読み込み
+	readCSV(path);
 });
 
 // Mapの基本設定
@@ -64,38 +66,90 @@ function createMap(){
 
   L.control.layers(baseMaps).addTo(map);
 
+
+
   // ズームコントローラーの位置を右下に変更
   map.zoomControl.setPosition('bottomright');
 
   // サイドメニューをマップに追加
   var sidebar = L.control.sidebar('sidebar').addTo(map);
 
-  //現在地コントロール
-   L.control.locate({ position: 'bottomleft' }).addTo(map);
+  // //現在地コントロール
+  //  L.control.locate({ position: 'bottomleft' }).addTo(map);
   //L.control.zoom({ position: 'bottomleft' }).addTo(map);
 
-  function onLocationFound(e) {
-    L.marker(e.latlng).addTo(map).bindPopup("現在地").openPopup();
-}
+  if(!navigator.geolocation) {
+    console.log("Your browser doesn't support geolocation feature!")
+  } else {
+      setInterval(() => {
+          navigator.geolocation.getCurrentPosition(getPosition)
+      }, 5000);
+    
+  }
+
+  var marker, circle;
+
+  function getPosition(position){
+      // console.log(position)
+      var lat = position.coords.latitude
+      var long = position.coords.longitude
+//      var accuracy = position.coords.accuracy
+
+      if(marker) {
+          map.removeLayer(marker)
+      }
+
+      // if(circle) {
+      //     map.removeLayer(circle)
+      // }
+
+      marker = L.marker([lat, long])
+//      circle = L.circle([lat, long], {radius: accuracy})
+
+      var featureGroup = L.featureGroup([marker]).addTo(map)
+
+      // map.fitBounds(featureGroup.getBounds())
+
+      console.log("Your coordinate is: Lat: "+ lat +" Long: "+ long+ " Accuracy: "+ accuracy)
+  }
+
+
 
 }
 
+// function to read csv data
+function readCSV(){
+	Papa.parse(path, {
+		header: true,
+		download: true,
+		complete: function(data) {
+			console.log(data);
+			
+			// map the data
+			mapCSV(data);
 
-          //メッセージボックス
-        //   // Messagebox
-        //   console.log(110)
-        // var message = '<p>messagebox</p>';
-        // message += '<p><a href="https://github.com/tinuzz/leaflet-messagebox">GitHub Leaflet.Messagebox</a></p>';
-        // console.log(120)
-        // map.messagebox.setPosition('topright');
-        // console.log(130)
-        // map.messagebox.options.timeout = 10000; 
-        // map.messagebox.show(message);
- // Martini->Jinriki
-//  const Jinriki = $("Jinriki");
-//  Jinriki.clickfunction (){
-//     console.log(30)
-//  }
+		}
+	});
+}
+
+function mapCSV(data){
+	
+	// loop through each entry
+	data.data.forEach(function(item,index){
+		// create marker
+		let marker = L.marker([item.latitude,item.longitude])
+
+		// add marker to featuregroup
+		markers.addLayer(marker)
+	})
+
+	// add featuregroup to map
+	markers.addTo(map)
+
+	// fit markers to map
+	map.fitBounds(markers.getBounds())
+}
+
 function JinrikiClick(){
   console.log("人力スタート")
   // onLocationFound(e) {
@@ -107,5 +161,6 @@ function JinrikiClick(){
 
 function GetCurrentPosition(){
   console.log("現在位置取得スタート")
+
   console.log("現在位置取得エンド")
 }
