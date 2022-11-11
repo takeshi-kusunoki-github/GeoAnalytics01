@@ -1,0 +1,22 @@
+{
+  "name": "geoanalytics01",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/takeshi-kusunoki-github/GeoAnalytics01.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/takeshi-kusunoki-github/GeoAnalytics01/issues"
+  },
+  "homepage": "https://github.com/takeshi-kusunoki-github/GeoAnalytics01#readme",
+  "dependencies": {
+    "tedious": "^15.1.1"
+  }
+}

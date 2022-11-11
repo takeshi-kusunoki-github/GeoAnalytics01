@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>shapefile2</title>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" />
+	<link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+		}
+	</style>
+
+</head>
+
+<body>
+	<div id= "backToHome"></div> <a href="index.html">Home</a></div>
+	<div id="map" style="width:100%; height: 100vh"></div>
+	<script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"></script>
+  <script src="data/shape/tsukubacity_osaza.js"></script>
+  <script src="./data/shape/geo.js"></script>
+
+
+
+	<script>
+    console.log(10)
+		var map = L.map('map').setView([36.0704404, 140.1205564], 11);
+		mapLink = "<a href='http://openstreetmap.org'>OpenStreetMap</a>";
+		L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', { attribution: 'Leaflet &copy; ' + mapLink + ', contribution', maxZoom: 18 }).addTo(map);
+
+
+	var basemaps = {
+		"地図":mapLink
+	}		
+    console.log(20)
+    //   // ズームコントローラーの位置を右下に変更
+    map.zoomControl.setPosition('bottomright');
+
+	var myStyle = {
+    "color": "black",
+    "weight":0.7,  // 線の太さ
+	"fillColor": "red",
+	"opacity": 10 //透明度
+	};
+
+	console.log(28)
+    // var tsukubashapelayer = L.geoJSON(tsukubashape).addTo(map);
+    console.log(39)
+	var hogehogehoge = L.geoJSON(tsukubashape, {
+    	style: myStyle
+	})
+	hogehogehoge.addTo(map);
+
+
+    console.log(30)
+
+	//四角
+	// var hogehoge = L.geoJSON(hoge1).addTo(map);
+	var overlayer1 = {
+		"大字":hogehogehoge
+	}		
+
+	// var overlayer2 = {
+	// 	"好きな形":hogehoge
+	// }	
+
+    console.log(40)
+
+	L.control.Layers(overlayer1).addTo(map);
+
+
+// 	 // featuregroupのコントローる表示
+// 	 var overlayer2 = {
+//     "Markers" : markers
+//   };
+//   // L.control.layers(baseMaps).addTo(map);
+//   L.control.layers(baseMaps,overlayer2).addTo(map)
+
+	console.log(41)
+	</script>
+
+	
+
+</body>
+
+</html>

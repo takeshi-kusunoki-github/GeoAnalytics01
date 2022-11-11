@@ -1,5 +1,5 @@
-latitude,longitude,title,reference_url,thumbnail_url
-36.0726549,140.118073,"鳥吉本店",https://torikichi-honten.com/,https://torikichi-honten.com/
-36.0635993,140.1193436,"豚さま",https://tabelog.com/ibaraki/A0802/A080201/8002875/,https://tabelog.com/ibaraki/A0802/A080201/8002875/
-36.0783587,140.1124129,"寿司処やぐら",https://tabelog.com/ibaraki/A0802/A080201/8000960/,https://tabelog.com/ibaraki/A0802/A080201/8000960/
-36.0559419,140.1052194,"手打ちうどん やまびこ弁天",https://tabelog.com/ibaraki/A0802/A080201/8020665/,https://tabelog.com/ibaraki/A0802/A080201/8020665/
+latitude,longitude,title,category
+36.0726549,140.118073,"鳥吉本店",1
+36.0635993,140.1193436,"豚さま",2
+36.0783587,140.1124129,"寿司処やぐら",2
+36.0559419,140.1052194,"手打ちうどん やまびこ弁天",3

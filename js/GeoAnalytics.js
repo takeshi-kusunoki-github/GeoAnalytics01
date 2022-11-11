@@ -6,6 +6,7 @@
 // Global変数
 let map;
 let Position_Current = [0,0];
+let baseMaps;
 
 
 
@@ -40,20 +41,20 @@ function createMap(){
   })
   osm.addTo(map);
 
-  //Thunder forest
-  var CartoDB_DarkMatter = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-        subdomains: 'abcd',
-        maxZoom: 20
-  });
-  CartoDB_DarkMatter.addTo(map);
+  // //Thunder forest
+  // var CartoDB_DarkMatter = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+  //       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+  //       subdomains: 'abcd',
+  //       maxZoom: 20
+  // });
+  // CartoDB_DarkMatter.addTo(map);
 
-  //OpenTopMap
-  var OpenTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
-      maxZoom: 17,
-      attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
-  });
-  OpenTopoMap.addTo(map);
+  // //OpenTopMap
+  // var OpenTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+  //     maxZoom: 17,
+  //     attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+  // });
+  // OpenTopoMap.addTo(map);
 
   //GoogleMap
   var GoogleMap = L.tileLayer('https://mt1.google.com/vt/lyrs=r&x={x}&y={y}&z={z}', {
@@ -61,16 +62,17 @@ function createMap(){
   });
   GoogleMap.addTo(map);
 
-  //LayerControll
-  var baseMaps = {
+  //basemapLayerControll
+  baseMaps = {
      "OpenStreetMap": osm,
-     "OpenToolMap": OpenTopoMap,
-     "DarkMap": CartoDB_DarkMatter,
+    //  "OpenToolMap": OpenTopoMap,
+    //  "DarkMap": CartoDB_DarkMatter,
      "GoogleMap": GoogleMap
   };
 
+
   //マップ種類コントロールをマップに追加
-  L.control.layers(baseMaps).addTo(map);
+  // L.control.layers(baseMaps).addTo(map);
 
   // ズームコントローラーの位置を右下に変更
   map.zoomControl.setPosition('bottomright');
@@ -161,18 +163,18 @@ function mapCSV(data){
 	// add featuregroup to map
 	markers.addTo(map)
 
+  // featuregroupのコントローる表示
+  var overlayer2 = {
+    "Markers" : markers
+  };
+  // L.control.layers(baseMaps).addTo(map);
+  L.control.layers(baseMaps,overlayer2).addTo(map)
+
+
+
 	// fit markers to map
 	map.fitBounds(markers.getBounds())
 }
-
-// function JinrikiClick(){
-//   console.log("人力スタート")
-//   // onLocationFound(e) {
-//     // Position_Current[0] = e.latlng.Latitude
-//     // Position_Current[1] = e.latlong.longitude
-//   // }
-//   console.log("人力エンド ")
-// }
 
 function GetCurrentPosition(){
   console.log("現在位置取得スタート")
